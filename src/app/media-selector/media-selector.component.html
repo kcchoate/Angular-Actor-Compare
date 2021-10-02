@@ -1,0 +1,23 @@
+<form [formGroup]="form">
+  <mat-form-field style="display: block; padding: 5px;">
+    <mat-label>Search for a movie or tv show</mat-label>
+    <input
+    matInput
+    formControlName="searchTerm"
+    type="text"
+    class="full-width"
+    [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]='formatDisplay' (optionSelected)="optionSelected($event.option.value)">
+      <ng-container *ngIf="showMovies">
+        <mat-option style="font-size: 12px;" *ngFor="let movie of searchResults?.movies" [value] = movie>{{format(movie)}}</mat-option>
+      </ng-container>
+      <ng-container *ngIf="showTvShows">
+        <mat-option style="font-size: 12px;" *ngFor="let tvShow of searchResults?.tvShows" [value] = tvShow>{{format(tvShow)}}</mat-option>
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-slide-toggle formControlName="movieToggle" (change)="toggleMovies($event.checked)">Show Movies</mat-slide-toggle>
+  <mat-slide-toggle formControlName="tvShowToggle" (change)="toggleTvShows($event.checked)">Show Tv Shows</mat-slide-toggle>
+</form>
+<app-movie-display *ngIf= "selectedMedia && selectedMedia.type === 'movie'" [movie]="selectedMedia" (actorsFound)=actorsFoundHandler($event)></app-movie-display>
+<app-tvshow-display *ngIf= "selectedMedia && selectedMedia.type === 'tvshow'" [tvShow]="selectedMedia" (actorsFound)=actorsFoundHandler($event)></app-tvshow-display>

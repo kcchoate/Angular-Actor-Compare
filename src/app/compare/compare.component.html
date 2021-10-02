@@ -1,0 +1,3 @@
+<app-media-selector class="media-selector" (actorsFound)="updateActorSet(1, $event)"></app-media-selector>
+<app-media-selector class="media-selector" (actorsFound)="updateActorSet(2, $event)"></app-media-selector>
+<app-compare-display class="compare" *ngIf="firstActorSet && secondActorSet" [firstActorSet]="firstActorSet" [secondActorSet]="secondActorSet"></app-compare-display>

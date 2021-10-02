@@ -1,0 +1,6 @@
+<mat-card>
+    <mat-card-title>{{movieField.title}}</mat-card-title>
+    <mat-card-subtitle>Released: {{movieField.releaseDate | date}}</mat-card-subtitle>
+    <img mat-card-image class="movie-poster" *ngIf="movieField.posterPath" src="{{movieField.posterPath}}">
+    <app-actor-display *ngFor="let actor of actors" [actor]="actor"></app-actor-display>
+</mat-card>

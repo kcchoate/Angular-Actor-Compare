@@ -1,0 +1,5 @@
+<mat-card>
+  <mat-card-title (click)="openActor()">{{actor.name}}</mat-card-title>
+  <mat-card-subtitle>Portraying: {{actor.characterName}}</mat-card-subtitle>
+  <img mat-card-image *ngIf="actor.profilePath" src="{{actor.profilePath}}" class="actor-portrait">
+</mat-card>
